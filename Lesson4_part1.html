@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>英文と日本語訳の切り替え</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      background-color: #f0f0f5;
+      margin: 0;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button.active {
+      background-color: #0056b3;
+    }
+
+    .sentence {
+      background: white;
+      margin-bottom: 15px;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .english, .japanese {
+      margin: 5px 0;
+      font-size: 1.1rem;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+      }
+
+      .sentence {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="button-group">
+    <button id="toggleEnglish">英文</button>
+    <button id="toggleJapanese">日本語訳</button>
+  </div>
+
+  <div id="content">
+    <div class="sentence">
+      <div class="english">The sun rises in the east.</div>
+      <div class="japanese">太陽は東から昇る。</div>
+    </div>
+    <div class="sentence">
+      <div class="english">Water boils at 100 degrees Celsius.</div>
+      <div class="japanese">水は摂氏100度で沸騰する。</div>
+    </div>
+    <div class="sentence">
+      <div class="english">She enjoys reading books in her free time.</div>
+      <div class="japanese">彼女は暇なときに本を読むのが好きです。</div>
+    </div>
+  </div>
+
+  <script>
+    const englishBtn = document.getElementById("toggleEnglish");
+    const japaneseBtn = document.getElementById("toggleJapanese");
+    const englishTexts = document.querySelectorAll(".english");
+    const japaneseTexts = document.querySelectorAll(".japanese");
+
+    let englishVisible = false;
+    let japaneseVisible = false;
+
+    englishBtn.addEventListener("click", () => {
+      englishVisible = !englishVisible;
+      englishBtn.classList.toggle("active", englishVisible);
+      englishTexts.forEach(e => e.style.display = englishVisible ? "block" : "none");
+    });
+
+    japaneseBtn.addEventListener("click", () => {
+      japaneseVisible = !japaneseVisible;
+      japaneseBtn.classList.toggle("active", japaneseVisible);
+      japaneseTexts.forEach(j => j.style.display = japaneseVisible ? "block" : "none");
+    });
+  </script>
+
+</body>
+</html>
